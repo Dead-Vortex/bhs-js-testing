@@ -3,6 +3,8 @@
  * Run after you make changes to re-run the tests with your new code.
  */
 
+// problems 1-10
+
 function sleep_in(weekday,vacation){
     return !weekday || vacation;
 }
@@ -81,4 +83,36 @@ function left2(string) {
     newString += string.substring(2);
     newString += string.substring(0, 2);
     return newString;
+}
+
+
+
+
+// problems 11-20
+
+function firstLast6(arr) {
+    return arr[0] == 6 || arr[arr.length - 1] == 6;
+}
+
+function has23(arr) {
+    for(let element of arr) {
+        if(element == 2 || element == 3) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function fix23(arr) {
+    let newArr = arr;
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i] == 2 && arr[i + 1] == 3) {
+            newArr[i + 1] = 0;
+        }
+    }
+    return newArr;
+}
+
+function countYZ(string) {
+    return 0;
 }
