@@ -114,5 +114,40 @@ function fix23(arr) {
 }
 
 function countYZ(string) {
-    return 0;
+    let yzCount = 0;
+    for(let i = 0; i < string.length; i++) {
+        if((string.toLowerCase().substring(i, i+1) == "y" || string.toLowerCase().substring(i, i+1) == "z") && (string.toLowerCase().substring(i + 1, i + 2) == " " || string.toLowerCase().substring(i + 1, i + 2) == "")) {
+            yzCount++;
+        }
+    }
+    return yzCount;
+}
+
+function endOther(str1, str2) {
+    let str1Lower = str1.toLowerCase();
+    let str2Lower = str2.toLowerCase();
+
+    return str1Lower.substring(str1Lower.length - str2Lower.length, str1Lower.length) == str2Lower || str2Lower.substring(str2Lower.length - str1Lower.length, str2Lower.length) == str1Lower;
+}
+
+function starOut(string) {
+    let newString = "";
+    for(i = 0; i < string.length; i++) {
+        if(string.substring(i + 1, i + 2) != "*" && string.substring(i, i + 1) != "*" && string.substring(i - 1, i) != "*") {
+            newString += string.substring(i, i + 1);
+        }
+    }
+    return newString;
+}
+
+function getSandwich(string) {
+    if(string.indexOf("bread") == -1 || (string.lastIndexOf("bread") == string.indexOf("bread"))) {
+        return "";
+    } else {
+        return string.substring(string.indexOf("bread") + 5, string.lastIndexOf("bread"));
+    }
+}
+
+function canBalance(arr) {
+    return true;
 }
