@@ -149,5 +149,59 @@ function getSandwich(string) {
 }
 
 function canBalance(arr) {
-    return true;
+    // iterate through the array, check for each element if that element
+    // plus all previous elements add up to the sum of all next elements
+    for(let i = 0; i < arr.length; i++) {
+        //console.log("test " + (i + 1));
+        let leftSum = 0;
+        for(let j = 0; j < i + 1; j++) {
+            leftSum += arr[j];
+            //console.log("currently pondering " + arr[j] + ", total sum of left so far is " + leftSum);
+        }
+        let rightSum = 0;
+        for(let k = i + 1; k < arr.length; k++) {
+            rightSum += arr[k];
+            //console.log("currently pondering " + arr[k] + ", total sum of right so far is " + rightSum);
+        }
+        if(leftSum == rightSum) {
+            //console.log("nice this is straight fax brother");
+            return true;
+        }
+    }
+    //console.log("nope not balanaced srry");
+    return false;
+}
+
+function countClumps(arr) {
+    let clumps = 0;
+    // when at #, check if next number matches. if it does, check next, etc.
+    // as soon as it doesn't match, check how many digits you've checked and
+    // if you've checked more than 2 digits then it is a clump
+    // then skip to the next clump somehow?
+    let lastClumpDigit;
+    for(i = 0; i < arr.length; i++) {
+        if(arr[i] == arr[i + 1] && arr[i] != lastClumpDigit) {
+            clumps++;
+            lastClumpDigit = arr[i];
+        } else if(arr[i] != lastClumpDigit) {
+            lastClumpDigit = arr[i];
+        }
+    }
+    return clumps;
+}
+
+function sameEnds(str) {
+    // check every possible substring (0, i) and see if it appears at the end
+    // AND make sure end of first substring is less than start of second
+    // end of first is i + 1 and end of second is str.length - i
+    let longestSubstring = "";
+    //console.log("STRING TO END: " + str);
+    for(let i = 0; i < str.length; i++) {
+        //console.log("current substring: " + str.substring(0, i + 1));
+        //console.log("end substring to test: " + str.substring(str.length - 1 - i, str.length));
+        if(str.substring(0, i + 1) == str.substring(str.length - i - 1, str.length) && i + 1 <= str.length / 2 && i + 1 > longestSubstring.length) {
+            longestSubstring = str.substring(0, i + 1);
+        }
+    }
+    return longestSubstring;
 }
